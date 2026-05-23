@@ -13,19 +13,18 @@ REPO_DIR="${REPO_DIR:?REPO_DIR is not set}"
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-#set +u
-#conda activate "${REPO_DIR}/.conda_env"
-#set -u
+set +u
+conda activate "${REPO_DIR}/.conda_env"
+set -u
 
 cd "${REPO_DIR}"
 mkdir -p logs
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
-REPO_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 
-set +u
-conda activate "${REPO_DIR}/.conda_env"
-set -u
+#set +u
+#conda activate "${REPO_DIR}/.conda_env"
+#set -u
 MODEL="${1:-}"
 INPUT_DIR="${2:-}"
 
