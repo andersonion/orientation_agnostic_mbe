@@ -9,7 +9,15 @@
 #SBATCH --error=logs/infer_%j.err
 
 set -euo pipefail
+REPO_DIR="${REPO_DIR:?REPO_DIR is not set}"
 
+source "$(conda info --base)/etc/profile.d/conda.sh"
+
+#set +u
+#conda activate "${REPO_DIR}/.conda_env"
+#set -u
+
+cd "${REPO_DIR}"
 mkdir -p logs
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
