@@ -308,6 +308,7 @@ def build_transforms(patch_size: Tuple[int, int, int], rotate_prob: float):
     train_transforms = Compose([
         LoadImaged(keys=keys),
         EnsureChannelFirstd(keys=keys),
+        EnsureTyped(keys=keys, track_meta=False),
         NormalizeIntensityd(keys="image", nonzero=True),
         SpatialPadd(keys=keys, spatial_size=patch_size),
         RandProperCubeRotationd(keys=keys, prob=rotate_prob),
@@ -328,6 +329,7 @@ def build_transforms(patch_size: Tuple[int, int, int], rotate_prob: float):
     val_transforms = Compose([
         LoadImaged(keys=keys),
         EnsureChannelFirstd(keys=keys),
+        EnsureTyped(keys=keys, track_meta=False),
         NormalizeIntensityd(keys="image", nonzero=True),
     ])
 
