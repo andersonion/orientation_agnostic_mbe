@@ -336,7 +336,6 @@ def build_transforms(patch_size: Tuple[int, int, int], rotate_prob: float):
 
 def make_model(patch_size: Tuple[int, int, int], feature_size: int, device: str):
     model = SwinUNETR(
-        img_size=patch_size,
         in_channels=2,
         out_channels=2,
         feature_size=feature_size,
