@@ -249,10 +249,31 @@ def find_data_pairs(img_dir: str, mask_dir: str) -> List[Dict[str, str]]:
             continue
 
         img_id = image_id_from_name(img)
-        candidates = [
-            m for m in mask_files
-            if img_id in os.path.basename(m) and "mask" in os.path.basename(m).lower()
-        ]
+
+        candidates = []
+
+        for m in mask_files:
+
+            mask_base = os.path.basename(m).lower()
+
+            # Require explicit delimiter boundary.
+            #
+            # VALID:
+            #   A123_mask.nii.gz
+            #   A123_brain_mask.nii.gz
+            #
+            # INVALID:
+            #   XA123_mask.nii.gz
+            #   A1234_mask.nii.gz
+            #
+
+            if not mask_base.startswith(f"{img_id.lower()}_"):
+                continue
+
+            if "mask" not in mask_base:
+                continue
+
+            candidates.append(m)
 
         if not candidates:
             print(f"[WARN] No mask found for image: {img}")
