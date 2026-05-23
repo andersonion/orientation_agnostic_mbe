@@ -15,6 +15,7 @@ dependencies:
   - scikit-image
   - matplotlib
   - jupyterlab
+  - einops
 
   # PyTorch stack
   - pytorch
