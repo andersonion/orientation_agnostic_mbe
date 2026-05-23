@@ -63,6 +63,7 @@ from monai.transforms import (
     AsDiscrete,
     Compose,
     EnsureChannelFirstd,
+    EnsureTyped,
     KeepLargestConnectedComponent,
     LoadImaged,
     NormalizeIntensityd,
