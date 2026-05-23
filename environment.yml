@@ -1,0 +1,29 @@
+name: oa_mbe
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - nibabel
+  - tqdm
+  - scikit-image
+  - matplotlib
+  - jupyterlab
+
+  # PyTorch stack
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  - pip:
+      - monai
+      - wandb

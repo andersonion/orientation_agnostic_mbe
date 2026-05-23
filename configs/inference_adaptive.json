@@ -1,0 +1,8 @@
+{
+  "tta": "adaptive",
+  "adaptive_initial": 4,
+  "adaptive_batch": 4,
+  "adaptive_min_rotations": 8,
+  "adaptive_ambiguity_threshold": 0.002,
+  "adaptive_dice_threshold": 0.995
+}
