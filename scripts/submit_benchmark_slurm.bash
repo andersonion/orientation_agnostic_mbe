@@ -23,7 +23,6 @@ cd "${REPO_DIR}"
 mkdir -p logs benchmarks
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
-REPO_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 
 #set +u
 #conda activate "${REPO_DIR}/.conda_env"
