@@ -327,6 +327,16 @@ def build_transforms(patch_size: Tuple[int, int, int], rotate_prob: float):
             num_samples=2,
             allow_smaller=False,
         ),
+
+        # Post-crop safety pad:
+        # Random boundary-adjacent crops after rotation can still occasionally
+        # yield undersized tensors (e.g. 96x92x96). Re-pad after crop so all
+        # batches collate cleanly.
+        SpatialPadd(
+            keys=keys,
+            spatial_size=patch_size,
+        ),
+
         RandAdjustContrastd(keys="image", prob=0.3, gamma=(0.7, 1.5)),
         RandScaleIntensityd(keys="image", prob=0.2, factors=0.2),
         RandGaussianNoised(keys="image", prob=0.15, mean=0.0, std=0.1),
