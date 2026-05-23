@@ -14,7 +14,6 @@ fi
 
 echo
 echo "Creating/updating conda environment..."
-conda env create -f environment.yml || conda env update -f environment.yml
 
 if [[ ! -d "${ENV_DIR}" ]]; then
     conda env create --prefix "${ENV_DIR}" -f environment.yml
