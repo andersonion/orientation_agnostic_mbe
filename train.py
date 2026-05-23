@@ -391,7 +391,7 @@ def main():
     parser.add_argument("--val_interval", type=int, default=1)
     parser.add_argument("--rotate_prob", type=float, default=1.0, help="Probability of random proper cube rotation.")
     parser.add_argument("--cache_rate", type=float, default=1.0)
-    parser.add_argument("--num_workers", type=int, default=2)
+    parser.add_argument("--num_workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=12345)
     parser.add_argument("--use_wandb", action="store_true")
     parser.add_argument("--wandb_project", default="orientation-agnostic-mbe")
@@ -450,13 +450,19 @@ def main():
         train_ds,
         batch_size=args.batch_size,
         shuffle=True,
-        num_workers=args.num_workers,
+        num_workers=0,
+        collate_fn=pad_list_data_collate,
+        pin_memory=torch.cuda.is_available(),
+        persistent_workers=False,
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=1,
         shuffle=False,
-        num_workers=args.num_workers,
+        num_workers=0,
+        collate_fn=pad_list_data_collate,
+        pin_memory=torch.cuda.is_available(),
+        persistent_workers=False,
     )
 
     model = make_model(patch_size, args.feature_size, args.device)
