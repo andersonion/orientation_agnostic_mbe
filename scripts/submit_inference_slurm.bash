@@ -13,7 +13,9 @@ set -euo pipefail
 mkdir -p logs
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
+set +u
 conda activate "$(pwd)/.conda_env"
+set -u
 
 MODEL="${1:-}"
 INPUT_DIR="${2:-}"

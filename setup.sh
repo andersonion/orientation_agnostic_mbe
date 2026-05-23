@@ -22,9 +22,12 @@ else
 fi
 echo
 echo "Activating environment..."
+
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
+set +u
 conda activate "$(pwd)/${ENV_DIR}"
+set -u
 echo
 echo "Python:"
 python --version

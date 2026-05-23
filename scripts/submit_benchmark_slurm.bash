@@ -13,9 +13,9 @@ set -euo pipefail
 mkdir -p logs benchmarks
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
+set +u
 conda activate "$(pwd)/.conda_env"
-
-IMG_DIR="${1:-}"
+set -u
 MASK_DIR="${2:-}"
 MODEL96="${3:-}"
 MODEL128="${4:-}"
