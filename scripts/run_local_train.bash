@@ -2,6 +2,6 @@
 set -euo pipefail
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate oa_mbe
+conda activate "$(pwd)/.conda_env"
 
 python train.py "$@"

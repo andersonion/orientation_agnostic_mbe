@@ -16,3 +16,5 @@ predicted_masks/
 *.pth
 
 .DS_Store
+
+.conda_env/

@@ -13,7 +13,7 @@ set -euo pipefail
 mkdir -p logs
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate oa_mbe
+conda activate "$(pwd)/.conda_env"
 
 MODEL="${1:-}"
 INPUT_DIR="${2:-}"

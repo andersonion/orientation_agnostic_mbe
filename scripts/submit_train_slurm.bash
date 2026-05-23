@@ -13,7 +13,7 @@ set -euo pipefail
 mkdir -p logs checkpoints
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate oa_mbe
+conda activate "$(pwd)/.conda_env"
 
 IMG_DIR="${1:-}"
 MASK_DIR="${2:-}"

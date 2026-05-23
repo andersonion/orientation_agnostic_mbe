@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ENV_NAME="oa_mbe"
+ENV_DIR=".conda_env"
 
 echo "====================================================="
 echo "Setting up orientation_agnostic_mbe environment"
@@ -16,11 +16,16 @@ echo
 echo "Creating/updating conda environment..."
 conda env create -f environment.yml || conda env update -f environment.yml
 
+if [[ ! -d "${ENV_DIR}" ]]; then
+    conda env create --prefix "${ENV_DIR}" -f environment.yml
+else
+    conda env update --prefix "${ENV_DIR}" -f environment.yml
+fi
 echo
 echo "Activating environment..."
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate "${ENV_NAME}"
 
+conda activate "$(pwd)/${ENV_DIR}"
 echo
 echo "Python:"
 python --version
